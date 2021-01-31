@@ -8,6 +8,8 @@ const session = require('express-session')
 const flash = require('express-flash')
 const mongoose = require('mongoose')
 
+const register = require('./controllers/register')
+
 const { db_user, db_password, db_name, db_cluster } = require('./config.js');
 
 mongoose.Promise = global.Promise; // let's us use then catch
@@ -46,3 +48,13 @@ app.get('/', (req, res) => {
 
 //running on port 3001 to avoid conflict with react
 app.listen(3001, () => { console.log(`Server is running  on port 3001!`) })
+
+
+// register new user
+app.post('/register', (req,res) => { register.handleRegister(req, res) })
+
+// get user with id
+app.get('/profile', (req, res, next) => { register.handleProfileGet(req, res, next) })
+
+// sign in request
+app.post('/signin', (req, res, next) => { register.handleSignin(req, res, next) })
