@@ -9,6 +9,7 @@ const flash = require('express-flash')
 const mongoose = require('mongoose')
 
 const register = require('./controllers/register')
+const scholar = require('./controllers/scholarship')
 
 const { db_user, db_password, db_name, db_cluster } = require('./config.js');
 
@@ -50,6 +51,7 @@ app.get('/', (req, res) => {
 app.listen(3001, () => { console.log(`Server is running  on port 3001!`) })
 
 
+// handle user object requests ----------------------------------
 // register new user
 app.post('/register', (req,res) => { register.handleRegister(req, res) })
 
@@ -58,3 +60,21 @@ app.get('/profile', (req, res, next) => { register.handleProfileGet(req, res, ne
 
 // sign in request
 app.post('/signin', (req, res, next) => { register.handleSignin(req, res, next) })
+
+
+
+// handle scholarship object requests ----------------------------
+// create post
+app.post('/create_scholar_post', (req,res) => { scholar.createPost(req,res) })
+
+// get all postas
+app.get('/get_scholar_posts', (req,res) => { scholar.getPosts(req,res) })
+
+// get my posts, using created_by
+app.get('/get_my_scholar_post/:created_by', (req,res) => { scholar.getMyPosts(req,res) })
+
+// edit post, using _id
+app.post('/edit_scholar_post/:id', (req,res) => { scholar.editPost(req,res) })
+
+// delete post, using _id
+app.post('/delete_scholar_post/:id', (req,res) => { scholar.deletePost(req,res) })
