@@ -6,16 +6,16 @@ const crypto = require('crypto')
 const path = require('path')
 const session = require('express-session')
 const flash = require('express-flash')
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
-// const { db_user, db_password, db, db_cluster, host_email } = require('./config.js');
+const { db_user, db_password, db_name, db_cluster } = require('./config.js');
 
-// mongoose.Promise = global.Promise; // let's us use then catch
-// mongoose.set('useCreateIndex', true);
-// mongoose.connect(`mongodb+srv://${db_user}:${db_password}@${db_cluster}/${db}`, { useNewUrlParser: true });
-// mongoose.connection
-//     .once('open', () => console.log('Mongodb is connected'))
-//     .on('** MongoDB Connection Error', err => console.log(err));
+mongoose.Promise = global.Promise; // let's us use then catch
+mongoose.set('useCreateIndex', true);
+mongoose.connect(`mongodb+srv://${db_user}:${db_password}@${db_cluster}/${db_name}`, { useNewUrlParser: true });
+mongoose.connection
+    .once('open', () => console.log('Mongodb is connected'))
+    .on('** MongoDB Connection Error', err => console.log(err));
 
 // define express instance
 const app = express();
