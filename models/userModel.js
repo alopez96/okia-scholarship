@@ -44,6 +44,4 @@ const User = mongoose.model('User', UserSchema);
 
 //Export so that other js files can use this model
 // is used by ../controllers/register.js
-// is used by ../controllers/profile.js
-// is used by ../controllers/signin.js
 module.exports = User;

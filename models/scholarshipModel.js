@@ -40,5 +40,5 @@ const mySchema = new Schema({
 const Scholarship = mongoose.model('Scholarship', mySchema);
 
 //Export so that other js files can use this model
-// is used by ../controllers/post.js
+// is used by ../controllers/scholarship.js
 module.exports = Scholarship;
